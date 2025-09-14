@@ -22,7 +22,12 @@ channel = "https://prefix.dev/conda-forge"
 name = "pixi-build-cmake"
 version = "*"
 
+[package.build.config]
+extra-args = ["-DBUILD_SHARED_LIBS=OFF"]
+
 [package.host-dependencies]
+glad2 = ">=2.0.8,<3"
+glad2-cmake = ">=2.0.8,<3"
 imgui = ">=1.92.1,<2"
 libvulkan-headers = ">=1.4.313.0,<2"
 libvulkan-loader = ">=1.4.313.0,<2"
