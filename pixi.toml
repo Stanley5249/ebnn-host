@@ -13,6 +13,9 @@ cxx_compiler = ["vs2022"]
 [dependencies]
 ebnn-host = { path = "." }
 
+# linting
+cmake = ">=4.1.1,<5"
+
 [package]
 name = "ebnn-host"
 version = "0.1.0"
@@ -23,7 +26,7 @@ name = "pixi-build-cmake"
 version = "*"
 
 [package.build.config]
-extra-args = ["-DBUILD_SHARED_LIBS=OFF"]
+extra-input-globs = ["CMakeLists.txt", "examples/**/*", "src/**/*.{cppm,ixx}"]
 
 [package.host-dependencies]
 glad2 = ">=2.0.8,<3"

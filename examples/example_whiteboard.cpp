@@ -1,5 +1,6 @@
 #include <iomanip>
 #include <iostream>
+#include <memory>
 
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
@@ -9,7 +10,7 @@
 
 #include <GLFW/glfw3.h>
 
-#include "ebnn_host/whiteboard_app.h"
+import ebnn_host;
 
 static void glfw_error_callback(int error, const char *description)
 {
@@ -93,8 +94,11 @@ int main(int, char **)
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init(glsl_version);
 
-    // Initialize our whiteboard application
-    WhiteboardApp app{};
+    // Initialize our EBNN host application
+    EBNNHost app{};
+    
+    // Set up dummy inference backend
+    app.setInference(std::make_unique<DummyInference>());
 
     // Our state
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
