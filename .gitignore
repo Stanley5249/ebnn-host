@@ -2,6 +2,11 @@
 .pixi/*
 !.pixi/config.toml
 
+# pixi build packages
 *.conda
 
+# CMake files
+compile_commands.json
+
+# ImGui settings
 imgui.ini

@@ -5,16 +5,13 @@ platforms = ["linux-64", "osx-64", "win-64"]
 preview = ["pixi-build"]
 
 [workspace.target.win.build-variants]
-c_compiler = ["vs2022"]
-cxx_compiler = ["vs2022"]
+c_compiler = ["clang"]
+cxx_compiler = ["clangxx"]
 
 [tasks]
 
 [dependencies]
 ebnn-host = { path = "." }
-
-# linting
-cmake = ">=4.1.1,<5"
 
 [package]
 name = "ebnn-host"
@@ -23,14 +20,19 @@ version = "0.1.0"
 [package.build.backend]
 channel = "https://prefix.dev/conda-forge"
 name = "pixi-build-cmake"
-version = "*"
+version = ">=0.3.2,<0.4"
 
 [package.build.config]
 extra-input-globs = ["CMakeLists.txt", "examples/**/*", "src/**/*.{cppm,ixx}"]
 
+[package.build-dependencies]
+glad2-cmake = ">=2.0.8,<3"
+
+[package.target.win.host-dependencies]
+vs2022_win-64 = ">=19.44.35207,<20"
+
 [package.host-dependencies]
 glad2 = ">=2.0.8,<3"
-glad2-cmake = ">=2.0.8,<3"
 imgui = ">=1.92.1,<2"
 libvulkan-headers = ">=1.4.313.0,<2"
 libvulkan-loader = ">=1.4.313.0,<2"
