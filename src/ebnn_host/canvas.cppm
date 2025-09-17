@@ -99,10 +99,11 @@ public:
 
         size_t idx = iy * WIDTH + ix;
         float w = GAUSSIAN_KERNEL[ky][kx];
-
+        
         uint16_t v = static_cast<uint16_t>(_pixels[idx]);
-        v += static_cast<uint16_t>((255ui16 - v) * w);
-        _pixels[idx] = static_cast<uint8_t>(std::min(v, 255ui16));
+        constexpr uint16_t MAX = static_cast<uint16_t>(UINT8_MAX);
+        v += static_cast<uint16_t>((MAX - v) * w);
+        _pixels[idx] = static_cast<uint8_t>(std::min(v, MAX));
       }
     }
   }
