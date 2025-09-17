@@ -9,7 +9,7 @@ set(CMAKE_CXX_SCAN_FOR_MODULES ON)
 
 # Dependenciespixi
 find_package(imgui CONFIG REQUIRED)
-find_package(glad CONFIG REQUIRED)
+find_package(Glad CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(OpenGL REQUIRED)
 

@@ -49,6 +49,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/linux-64/liburing-2.12-hb700be7_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/libusb-1.0.29-h73b1eb8_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/libvorbis-1.3.7-h54a6638_2.conda
+      - conda: https://prefix.dev/conda-forge/linux-64/libvulkan-loader-1.4.313.0-h5279c79_1.conda
       - conda: https://prefix.dev/conda-forge/linux-64/libxcb-1.17.0-h8a09558_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/libxkbcommon-1.11.0-hca5e8e5_1.conda
       - conda: https://prefix.dev/conda-forge/linux-64/libxml2-16-2.15.0-ha9997c6_0.conda
@@ -89,6 +90,7 @@ environments:
       - conda: https://prefix.dev/conda-forge/osx-64/libiconv-1.18-h57a12c2_2.conda
       - conda: https://prefix.dev/conda-forge/osx-64/libintl-0.25.1-h3184127_1.conda
       - conda: https://prefix.dev/conda-forge/osx-64/libusb-1.0.29-h2287256_0.conda
+      - conda: https://prefix.dev/conda-forge/osx-64/libvulkan-loader-1.4.313.0-hfc0b2d5_1.conda
       - conda: https://prefix.dev/conda-forge/osx-64/libzlib-1.3.1-hd23fc13_2.conda
       - conda: https://prefix.dev/conda-forge/osx-64/pcre2-10.46-ha3e7e28_0.conda
       - conda: https://prefix.dev/conda-forge/osx-64/sdl2-2.32.56-h53ec75d_0.conda
@@ -99,7 +101,8 @@ environments:
       - conda: https://prefix.dev/conda-forge/win-64/glfw-3.5.0-hfd05255_0.conda
       - conda: https://prefix.dev/conda-forge/win-64/imgui-1.92.1-he134b7a_0.conda
       - conda: https://prefix.dev/conda-forge/win-64/libusb-1.0.29-h1839187_0.conda
-      - conda: https://prefix.dev/conda-forge/win-64/sdl2-2.32.54-he0c23c2_0.conda
+      - conda: https://prefix.dev/conda-forge/win-64/libvulkan-loader-1.4.313.0-h477610d_1.conda
+      - conda: https://prefix.dev/conda-forge/win-64/sdl2-2.32.56-h5112557_0.conda
       - conda: https://prefix.dev/conda-forge/win-64/sdl3-3.2.22-h5112557_0.conda
       - conda: https://prefix.dev/conda-forge/win-64/ucrt-10.0.26100.0-h57928b3_0.conda
       - conda: https://prefix.dev/conda-forge/win-64/vc-14.3-h41ae7f8_31.conda
@@ -191,6 +194,7 @@ packages:
   subdir: win-64
   depends:
   - imgui >=1.92.1,<1.92.2.0a0
+  - libvulkan-loader >=1.4.313.0,<2.0a0
   - ucrt >=10.0.20348.0
   - ucrt >=10.0.20348.0
   - vc >=14.2
@@ -198,7 +202,7 @@ packages:
   - vc14_runtime >=14.29.30139
   - vc14_runtime >=14.44.35208
   input:
-    hash: fbccadef21131a996c57c2b24a2a7debd0b0737d793d8ac1463829a7fdb5e83b
+    hash: 3bfb7bbb75fa08896c131f9cd9743d58c15790eb4b9f17b8e696ca5aba262ea8
     globs: []
 - conda: .
   name: ebnn-host
@@ -208,9 +212,11 @@ packages:
   depends:
   - imgui >=1.92.2,<1.92.3.0a0
   - libgcc >=15
+  - libgl >=1.7.0,<2.0a0
   - libstdcxx >=15
+  - libvulkan-loader >=1.4.313.0,<2.0a0
   input:
-    hash: fbccadef21131a996c57c2b24a2a7debd0b0737d793d8ac1463829a7fdb5e83b
+    hash: 3bfb7bbb75fa08896c131f9cd9743d58c15790eb4b9f17b8e696ca5aba262ea8
     globs: []
 - conda: .
   name: ebnn-host
@@ -220,8 +226,9 @@ packages:
   depends:
   - imgui >=1.92.1,<1.92.2.0a0
   - libcxx >=21
+  - libvulkan-loader >=1.4.313.0,<2.0a0
   input:
-    hash: fbccadef21131a996c57c2b24a2a7debd0b0737d793d8ac1463829a7fdb5e83b
+    hash: 3bfb7bbb75fa08896c131f9cd9743d58c15790eb4b9f17b8e696ca5aba262ea8
     globs: []
 - conda: https://prefix.dev/conda-forge/linux-64/gettext-0.25.1-h3f43e3d_1.conda
   sha256: cbfa8c80771d1842c2687f6016c5e200b52d4ca8f2cc119f6377f64f899ba4ff
@@ -788,6 +795,46 @@ packages:
   license_family: BSD
   size: 285894
   timestamp: 1753879378005
+- conda: https://prefix.dev/conda-forge/linux-64/libvulkan-loader-1.4.313.0-h5279c79_1.conda
+  sha256: 7ad95a14fdba9eee94aa4c6891d538a4346b17287660a2d6211eb8b59cbcd563
+  md5: 7625a536f72395ff86a17f96a92ce6b2
+  depends:
+  - __glibc >=2.17,<3.0.a0
+  - libstdcxx >=14
+  - libgcc >=14
+  - xorg-libx11 >=1.8.12,<2.0a0
+  - xorg-libxrandr >=1.5.4,<2.0a0
+  constrains:
+  - libvulkan-headers 1.4.313.0.*
+  license: Apache-2.0
+  size: 189419
+  timestamp: 1758045056997
+- conda: https://prefix.dev/conda-forge/osx-64/libvulkan-loader-1.4.313.0-hfc0b2d5_1.conda
+  sha256: 83d8578635f78d9a22f7ded3d41ca69656a0d160ca3e6e1bc0c1665bfbcccca8
+  md5: 53768f273a275fe8141f70859e6353b1
+  depends:
+  - libcxx >=19
+  - __osx >=10.13
+  constrains:
+  - libvulkan-headers 1.4.313.0.*
+  license: Apache-2.0
+  size: 171793
+  timestamp: 1758045106958
+- conda: https://prefix.dev/conda-forge/win-64/libvulkan-loader-1.4.313.0-h477610d_1.conda
+  sha256: e10a03d4e0c9243d0411e2cfcab58cd91a285b27dac1ab46fec8ef4fca1084c6
+  md5: 7a2c5006f84f4bddb2d3c9d515c1e950
+  depends:
+  - vc >=14.3,<15
+  - vc14_runtime >=14.44.35208
+  - ucrt >=10.0.20348.0
+  - vc >=14.3,<15
+  - vc14_runtime >=14.44.35208
+  - ucrt >=10.0.20348.0
+  constrains:
+  - libvulkan-headers 1.4.313.0.*
+  license: Apache-2.0
+  size: 272358
+  timestamp: 1758045080327
 - conda: https://prefix.dev/conda-forge/linux-64/libxcb-1.17.0-h8a09558_0.conda
   sha256: 666c0c431b23c6cec6e492840b176dde533d48b7e6fb8883f5071223433776aa
   md5: 92ed62436b625154323d40d5f2f11dd7
@@ -967,20 +1014,20 @@ packages:
   license: Zlib
   size: 740066
   timestamp: 1757842955775
-- conda: https://prefix.dev/conda-forge/win-64/sdl2-2.32.54-he0c23c2_0.conda
-  sha256: 477781545f317cd9f0a35cc39e22976ee374f9c98b5cbb083812f6d33cf47c08
-  md5: b1a715daa818f0ffcd23bb02b7fcf861
+- conda: https://prefix.dev/conda-forge/win-64/sdl2-2.32.56-h5112557_0.conda
+  sha256: d17da21386bdbf32bce5daba5142916feb95eed63ef92b285808c765705bbfd2
+  md5: 4cffbfebb6614a1bff3fc666527c25c7
   depends:
-  - vc >=14.2,<15
-  - vc14_runtime >=14.29.30139
+  - vc >=14.3,<15
+  - vc14_runtime >=14.44.35208
   - ucrt >=10.0.20348.0
-  - vc >=14.2,<15
-  - vc14_runtime >=14.29.30139
+  - vc >=14.3,<15
+  - vc14_runtime >=14.44.35208
   - ucrt >=10.0.20348.0
-  - sdl3 >=3.2.10,<4.0a0
+  - sdl3 >=3.2.22,<4.0a0
   license: Zlib
-  size: 572859
-  timestamp: 1745799945033
+  size: 572101
+  timestamp: 1757842925694
 - conda: https://prefix.dev/conda-forge/linux-64/sdl3-3.2.22-h68140b3_0.conda
   sha256: 789ae811b7b93b01c2300461345027fd1a19a7a404e1b8729f58fbe81a82b3bc
   md5: ebfddf2601e082193bb550924bbb9744
